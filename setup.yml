@@ -1,0 +1,13 @@
+- name: Setup chroot
+  hosts: chroots
+  connection: chroot
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+  tasks:
+    - name: hello world
+      shell: |
+        echo "here at $PWD"
+      register: out
+    - name: print output
+      debug:
+        msg: "{{ out.stdout_lines }}"
