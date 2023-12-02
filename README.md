@@ -8,8 +8,16 @@
 
 # TODO
 
-Test with packer in virtualbox while enabling the installation directly to a
-disk.
+Use pacman packages for as much of the configuration as possible because those
+are easier to maintain than ansible scripts.
+
+# Dependencies
+
+* edk2-ovmf
+
+# Debug
+
+export `PACKER_LOG=1`
 
 # Links
 
