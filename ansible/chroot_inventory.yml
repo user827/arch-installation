@@ -1,4 +1,4 @@
 chroots:
   hosts:
-    chroot/mnt:
+    ../chroot/mnt:
       ansible_python_interpreter: /usr/bin/python

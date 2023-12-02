@@ -1,6 +1,6 @@
 install_media:
   hosts:
     localhost:
-      chroot_dir: chroot/mnt
+      chroot_dir: ../chroot/mnt
       ansible_connection: local
       ansible_python_interpreter: /usr/bin/python
