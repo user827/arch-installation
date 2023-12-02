@@ -8,12 +8,30 @@
 
 # TODO
 
-Use pacman packages for as much of the configuration as possible because those
-are easier to maintain than ansible scripts.
+* Use pacman packages for as much of the configuration as possible because those
+  are easier to maintain than ansible scripts.
+
+* Libvirt to authenticate with password
 
 # Dependencies
 
 * edk2-ovmf
+* packer
+* ansible
+* vagrant
+* qemu
+* libvirt
+* correct ruby version for vagrant
+
+* vagrant plugin install vagrant-libvirt
+
+# Testing
+
+```
+vagrant box add packer_arch_libvirt_amd64.box --name archbox --force
+vagrant up --provider=libvirt
+sudo virt-viewer vagrant_archvirt
+```
 
 # Debug
 

@@ -1,0 +1,6 @@
+ansible_user: devops
+box: archbox
+name: archvirt
+ip: 192.168.56.2
+cpu: 2
+memory: 2048

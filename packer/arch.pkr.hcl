@@ -52,7 +52,8 @@ source "docker" "arch" {
 }
 
 data "sshkey" "install" {
-  type = "rsa"
+  name = "packerarchsetup"
+  type = "rsa" # Vagrant only supports rsa
 }
 
 source "qemu" "arch" {
