@@ -64,7 +64,8 @@ source "qemu" "arch" {
   ssh_username         = "root"
   ssh_private_key_file = data.sshkey.install.private_key_path
   ssh_timeout          = "5m"
-  #ssh_file_transfer_protocol = "sftp" # for ansible
+  ssh_file_transfer_method = "sftp" # for ansible
+  ssh_read_write_timeout = "120s"
 
   cpus        = 2
   memory      = 2048
@@ -111,22 +112,8 @@ build {
     environment_vars = [
       "CRYPT_PASSWORD=${var.root_disk_password}",
     ]
-    expect_disconnect = true
-  }
-
-  provisioner "ansible" {
-    user          = "root"
-    playbook_file = "${path.cwd}/../ansible/setup.yml"
-    #role_paths           = "${path.cwd}/ansible/roles"
-    #galaxy_file          = "${path.cwd}/ansible/requirements.yml"
-    #galaxy_force_install = true
-    ansible_env_vars = [
-      "ANSIBLE_CONFIG=${path.cwd}/ansible.cfg"
-    ]
-    extra_arguments = [
-      "--extra-vars", "display_skipped_hosts=false",
-      "--scp-extra-args", "'-O'"
-    ]
+    #expect_disconnect = true # Gets stuck anyway with 'SSH client not available'
+    #pause_after = "90s" # Don't try to continue until reboot has signaled connection error
   }
 
   post-processor "docker-tag" {

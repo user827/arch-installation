@@ -6,16 +6,15 @@ Scripts for installing arch linux.
 * Run the scripts in order in `scripts/host` folder.
 * Then in `scripts/chroot` folder.
 * Reboot.
-* Finally run `make setup`.
 
 See `packer/create_chroot.sh` for example. A password used to access the machine
-during installation can be created with `mkpasswd -m sha-512`.
+during installation can be created with `mkpasswd -m sha-512` command of the
+`whois` package.
 
 # Dependencies
 
 * edk2-ovmf
 * packer
-* ansible
 * vagrant
 * qemu
 * libvirt

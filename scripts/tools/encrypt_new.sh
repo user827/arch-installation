@@ -17,5 +17,5 @@ cryptsetup luksFormat "${BATCH:+--batch-mode}" --sector-size "$SECTOR_SIZE" --us
 if [ "$BATCH" = 1 ]; then
   printf '%s' "$CRYPT_PASSWORD" | cryptsetup luksAddKey "${BATCH:+--batch-mode}" --key-file "$cryptkey" "$vol" --new-keyfile=- --hash sha256 --pbkdf pbkdf2
 else
-  cryptsetup luksAddKey --key-file "$cryptkey" "$vol"
+  cryptsetup luksAddKey --key-file "$cryptkey" --hash sha256 --pbkdf pbkdf2 "$vol"
 fi
