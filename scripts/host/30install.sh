@@ -4,7 +4,7 @@ set -eux
 curdir=$(cd "$(dirname "$0")" && pwd)
 . "$curdir"/../options
 
-pacstrap "$ROOT" base base-devel
+pacstrap -K "$ROOT" base base-devel linux linux-firmware
 genfstab -U -p "$ROOT" >> "$ROOT"/etc/fstab
 mkdir -p "$(dirname "$ROOT$KEYFILE")"
 install -m0600 "$KEYFILE" "$ROOT$KEYFILE"

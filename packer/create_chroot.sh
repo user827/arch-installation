@@ -14,6 +14,7 @@ done
 
 mkdir "$ROOT"/root/installation
 cp -r scripts/chroot "$ROOT"/root/installation/chroot
+cp -r scripts/current "$ROOT"/root/installation/current
 cp scripts/options "$ROOT"/root/installation/
 for script in "$ROOT"/root/installation/chroot/*; do
   arch-chroot "$ROOT" "${script#"$ROOT"}"
