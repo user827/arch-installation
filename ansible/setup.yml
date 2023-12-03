@@ -1,13 +1,7 @@
-- name: Setup chroot
-  hosts: chroots
-  connection: chroot
-  vars:
-    ansible_python_interpreter: /usr/bin/python
+- name: Setup new installation
+  hosts: all
+  become_user: root
+  become: yes
   tasks:
-    - name: hello world
-      shell: |
-        echo "here at $PWD"
-      register: out
-    - name: print output
-      debug:
-        msg: "{{ out.stdout_lines }}"
+    - name: install packages
+      command: pacman -S --noconfirm ansible

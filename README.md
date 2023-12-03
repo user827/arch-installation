@@ -1,17 +1,14 @@
-# Doit
+Scripts for installing arch linux.
 
-* `export PASS=<sudopass>`
-* `make create`
-* `make mount` in another shell
-* `make setup`
-* exit the shell from `make mount`
+# Install
 
-# TODO
+* Configure `scripts/options`.
+* Run the scripts in order in `scripts/host` folder.
+* Then in `scripts/chroot` folder.
+* Reboot.
+* Finally run `make setup`.
 
-* Use pacman packages for as much of the configuration as possible because those
-  are easier to maintain than ansible scripts.
-
-* Libvirt to authenticate with password
+See `packer/create_chroot.sh` for example.
 
 # Dependencies
 
@@ -27,17 +24,23 @@
 
 # Testing
 
+Create virtual machine image
 ```
+cd packer
+PKR_VAR_root_disk_password=<pw> make qemuimage
 vagrant box add packer_arch_libvirt_amd64.box --name archbox --force
+```
+
+Start the image
+```
+cd vagrant
 vagrant up --provider=libvirt
 sudo virt-viewer vagrant_archvirt
 ```
 
 # Debug
 
-export `PACKER_LOG=1`
-
-# Links
-
-* [Arch chroot ansible
-  connection](https://www.reddit.com/r/ansible/comments/8kc59a/how_to_use_the_chroot_connection_plugin/)
+Debug packer with
+```
+export PACKER_LOG=1
+```

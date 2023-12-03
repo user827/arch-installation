@@ -3,3 +3,8 @@ variable "build_version" {
   description = "Build version"
   default     = "noversion"
 }
+
+variable "root_disk_password" {
+  type      = string
+  sensitive = true
+}

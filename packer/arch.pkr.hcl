@@ -30,11 +30,9 @@ packer {
 locals {
   #ovf_export_path    = "${path.cwd}/artifacts/${local.vm_name}"
   common_data_source = "http"
-  build_username     = "devops"
   data_source_content = {
     "/meta-data" = file("${abspath(path.root)}/data/meta-data")
     "/user-data" = templatefile("${abspath(path.root)}/data/user-data.pkrtpl.hcl", {
-      build_username   = local.build_username
       build_public_key = data.sshkey.install.public_key
     })
   }
@@ -63,9 +61,10 @@ source "qemu" "arch" {
   shutdown_command = "sudo -S -E shutdown -P now"
 
   communicator         = "ssh"
-  ssh_username         = local.build_username
+  ssh_username         = "root"
   ssh_private_key_file = data.sshkey.install.private_key_path
   ssh_timeout          = "5m"
+  #ssh_file_transfer_protocol = "sftp" # for ansible
 
   cpus        = 2
   memory      = 2048
@@ -102,9 +101,22 @@ build {
     "source.qemu.arch",
   ]
 
+  provisioner "file" {
+    source      = "../scripts"
+    destination = "/root"
+  }
+
+  provisioner "shell" {
+    script = "create_chroot.sh"
+    environment_vars = [
+      "CRYPT_PASSWORD=${var.root_disk_password}",
+    ]
+    expect_disconnect = true
+  }
+
   provisioner "ansible" {
-    user          = local.build_username
-    playbook_file = "${path.cwd}/../ansible/create.yml"
+    user          = "root"
+    playbook_file = "${path.cwd}/../ansible/setup.yml"
     #role_paths           = "${path.cwd}/ansible/roles"
     #galaxy_file          = "${path.cwd}/ansible/requirements.yml"
     #galaxy_force_install = true
@@ -113,6 +125,7 @@ build {
     ]
     extra_arguments = [
       "--extra-vars", "display_skipped_hosts=false",
+      "--scp-extra-args", "'-O'"
     ]
   }
 
