@@ -6,7 +6,8 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 . "$curdir"/../current
 
 etckeeper init
-passwd -l root
+#passwd -l root # do later
+echo "root:$ROOT_ENCRYPTED_PASSWORD" | chpasswd --encrypted
 
 (
 . /etc/default/grub

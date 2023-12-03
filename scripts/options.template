@@ -8,6 +8,7 @@ EFI_PARTITION=/dev/vda1
 
 KEYFILE=/root/secrets/keyfile
 #CRYPT_PASSWORD=
+ROOT_ENCRYPTED_PASSWORD=
 
 BTRFSROOT=/mnt/btrfs
 ROOTMAPPER=/dev/mapper/crypt_root

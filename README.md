@@ -8,7 +8,8 @@ Scripts for installing arch linux.
 * Reboot.
 * Finally run `make setup`.
 
-See `packer/create_chroot.sh` for example.
+See `packer/create_chroot.sh` for example. A password used to access the machine
+during installation can be created with `mkpasswd -m sha-512`.
 
 # Dependencies
 

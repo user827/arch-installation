@@ -4,6 +4,7 @@ set -eux
 curdir=$(cd "$(dirname "$0")" && pwd)
 . "$curdir"/../options
 
+# TODO not all configurations succeed
 pacstrap -K "$ROOT" base base-devel linux linux-firmware
 genfstab -U -p "$ROOT" >> "$ROOT"/etc/fstab
 mkdir -p "$(dirname "$ROOT$KEYFILE")"
