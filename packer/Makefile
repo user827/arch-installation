@@ -7,6 +7,10 @@ validate:
 	packer fmt -recursive .
 	packer validate -var=build_version=validate .
 
+# For testing installation inside the chroot
+dockerimage:
+	packer build --only=docker.arch -var=build_version="$(shell git describe --tags --always)-$(shell date +%s)" .
+
 # For testing the whole setup
 qemuimage:
 	rm -rf output-arch-qemu packer_arch_qemu.box

@@ -14,6 +14,6 @@ echo LANG=en_US.UTF-8 > /etc/locale.conf
 export LANG=en_US.UTF-8
 
 
-hwclock --systohc
+[ -n "${INSIDE_DOCKER:-}" ] || hwclock --systohc
 
 echo "$IP   $HOSTNAME.$DOMAIN   $HOSTNAME" >> /etc/hosts

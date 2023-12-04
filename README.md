@@ -38,6 +38,11 @@ vagrant up --provider=libvirt
 sudo virt-viewer vagrant_archvirt
 ```
 
+For faster chroot only script testing, use docker:
+```
+make dockerimage
+```
+
 # Debug
 
 Debug packer with

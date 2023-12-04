@@ -44,9 +44,10 @@ locals {
 }
 
 source "docker" "arch" {
-  image       = "arch-base:1"
-  commit      = true
-  run_command = ["-d", "-i", "-t", "{{.Image}}", "/bin/bash"]
+  image  = "archlinux:latest"
+  commit = true
+  # We want bash and fakeroot wants ulimit increase
+  run_command = ["--ulimit", "nofile=1024:524288", "-d", "-i", "-t", "{{.Image}}", "/bin/bash"]
 }
 
 data "sshkey" "install" {
@@ -60,12 +61,12 @@ source "qemu" "arch" {
   output_directory = "output-arch-qemu"
   shutdown_command = "sudo -S -E shutdown -P now"
 
-  communicator         = "ssh"
-  ssh_username         = "root"
-  ssh_private_key_file = data.sshkey.install.private_key_path
-  ssh_timeout          = "5m"
+  communicator             = "ssh"
+  ssh_username             = "root"
+  ssh_private_key_file     = data.sshkey.install.private_key_path
+  ssh_timeout              = "5m"
   ssh_file_transfer_method = "sftp" # for ansible
-  ssh_read_write_timeout = "120s"
+  ssh_read_write_timeout   = "120s"
 
   cpus        = 2
   memory      = 2048
@@ -108,12 +109,18 @@ build {
   }
 
   provisioner "shell" {
+    only   = ["qemu.arch"]
     script = "create_chroot.sh"
     environment_vars = [
       "CRYPT_PASSWORD=${var.root_disk_password}",
     ]
     #expect_disconnect = true # Gets stuck anyway with 'SSH client not available'
     #pause_after = "90s" # Don't try to continue until reboot has signaled connection error
+  }
+
+  provisioner "shell" {
+    only   = ["docker.arch"]
+    script = "docker_setup.sh"
   }
 
   post-processor "docker-tag" {

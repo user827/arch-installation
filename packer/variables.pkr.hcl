@@ -7,4 +7,5 @@ variable "build_version" {
 variable "root_disk_password" {
   type      = string
   sensitive = true
+  default   = "hello"
 }
