@@ -1,3 +1,4 @@
+#!/bin/sh
 BATCH=1
 
 SWAPSIZE=8G
@@ -8,14 +9,14 @@ EFI_PARTITION=/dev/vda1
 
 KEYFILE=/root/secrets/keyfile
 #CRYPT_PASSWORD=
-NORMAL_USER=
-USER_ENCRYPTED_PASSWORD=
+NORMAL_USER=bob
+USER_ENCRYPTED_PASSWORD='$6$BnwsUHklkRInFzAz$cCXcbUQOyboVa028gu2QUqJWXDAMVcfojdIxaGB0HIgOkfiSLi1ojc/1a3NE22IXsK2.9IxR7nkX3m4wf3GMA0'
 
 BTRFSROOT=/mnt/btrfs
 ROOTMAPPER=/dev/mapper/crypt_root
 ROOT=/mnt/root
 MOUNTOPTS=lazytime,compress=zstd,discard=async
 
-HOSTNAME=
-TIMEZONE=
-DOMAIN=
+HOSTNAME=muikku
+TIMEZONE=Europe/Helsinki
+DOMAIN=local.mydomain
