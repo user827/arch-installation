@@ -13,23 +13,17 @@ for script in scripts/host/*; do
 done
 
 mkdir "$ROOT"/root/installation
-cp -r scripts/chroot "$ROOT"/root/installation/chroot
-cp -r scripts/current "$ROOT"/root/installation/current
-cp -r scripts/gpgpubkey "$ROOT"/root/installation/gpgpubkey
+cp -r scripts/chroot "$ROOT"/root/installation/
+cp -r scripts/tools "$ROOT"/root/installation/
+cp scripts/current "$ROOT"/root/installation/
 cp scripts/options "$ROOT"/root/installation/
+cp scripts/gpgpubkey "$ROOT"/root/installation/
 for script in "$ROOT"/root/installation/chroot/*; do
   arch-chroot "$ROOT" "${script#"$ROOT"}"
 done
 
-sed -ri 's/.*(GRUB_ENABLE_CRYPTODISK)=.*/\1=y/' "$ROOT"/etc/default/grub
-cp scripts/tools/updategrub.sh "$ROOT"/root/installation/
-mkdir -m0700 "$ROOT"/efi
-mount "${DISK}1" "$ROOT"/efi
-arch-chroot "$ROOT" /root/installation/updategrub.sh grub
-mv "$ROOT"/newgrub.cfg "$ROOT"/boot/grub/grub/grub.cfg
-
-mkdir -m 700 "$ROOT"/.ssh
-cp /root/.ssh/authorized_keys "$ROOT"/.ssh/
+#mkdir -m 700 "$ROOT"/.ssh
+#cp /root/.ssh/authorized_keys "$ROOT"/.ssh/
 
 umount -vR "$ROOT"
 umount "$BTRFSROOT"

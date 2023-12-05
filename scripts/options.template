@@ -18,4 +18,3 @@ MOUNTOPTS=lazytime,compress=zstd,discard=async
 HOSTNAME=
 TIMEZONE=
 DOMAIN=
-IP=

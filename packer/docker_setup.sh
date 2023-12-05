@@ -2,7 +2,7 @@
 set -eux
 
 cd /root
-export INSIDE_DOCKER=1
+export NO_SETUP_HARDWARE=1
 echo "UUID=hello" > scripts/current
 pacman -Sy
 pacman -S --noconfirm base-devel

@@ -14,6 +14,8 @@ echo LANG=en_US.UTF-8 > /etc/locale.conf
 export LANG=en_US.UTF-8
 
 
-[ -n "${INSIDE_DOCKER:-}" ] || hwclock --systohc
+# Generate /etc/adjtime
+[ -n "${NO_SETUP_HARDWARE:-}" ] || hwclock --systohc
 
-echo "$IP   $HOSTNAME.$DOMAIN   $HOSTNAME" >> /etc/hosts
+# See man 1 hostname for recommended approach for configuring domain name.
+echo "127.0.1.1   $HOSTNAME.$DOMAIN   $HOSTNAME" >> /etc/hosts

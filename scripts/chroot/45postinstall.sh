@@ -30,7 +30,7 @@ systemctl enable postfix
 sed -ri "s|(GRUB_CMDLINE_LINUX_DEFAULT)=.*|\\1=\"$GRUB_CMDLINE_LINUX_DEFAULT rd.luks.name=$UUID=root rd.luks.key=$KEYFILE rd.luks.options=luks,discard\"|" /etc/default/grub
 )
 
-if [ -z "${INSIDE_DOCKER:-}" ]; then
+if [ -z "${NO_SETUP_HARDWARE:-}" ]; then
   echo 'HOOKS=(base systemd autodetect modconf kms keyboard block sd-encrypt filesystems fsck)' > /etc/mkinitcpio.conf.d/encrypted.conf
   echo "FILES+=($KEYFILE)" >> /etc/mkinitcpio.conf.d/encrypted.conf
   mkinitcpio -P
