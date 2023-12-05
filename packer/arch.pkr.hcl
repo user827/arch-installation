@@ -93,8 +93,8 @@ source "qemu" "arch" {
   disk_interface = "virtio"
 
   efi_boot          = true
-  efi_firmware_code = "/usr/share/OVMF/x64/OVMF_CODE.fd"
-  efi_firmware_vars = "/usr/share/OVMF/x64/OVMF_VARS.fd"
+  efi_firmware_code = var.efi_firmware_code
+  efi_firmware_vars = var.efi_firmware_vars
 }
 
 build {

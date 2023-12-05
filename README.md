@@ -24,6 +24,7 @@ during installation can be created with `mkpasswd -m sha-512` command of the
 
 # Testing
 
+Configure `packer/config.auto.pkrvars.hcl` if necessary.
 Create virtual machine image
 ```
 cd packer

@@ -1,0 +1,2 @@
+  efi_firmware_code = "/usr/share/OVMF/x64/OVMF_CODE.fd"
+  efi_firmware_vars = "/usr/share/OVMF/x64/OVMF_VARS.fd"
