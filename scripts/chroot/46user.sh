@@ -6,6 +6,7 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 . "$curdir"/../current
 
 useradd --create-home --user-group --comment "$NORMAL_USER" --shell /usr/bin/zsh "$NORMAL_USER"
+gpasswd -a "$NORMAL_USER" users
 echo "$NORMAL_USER ALL=(root) NOPASSWD: ALL" > /etc/sudoers.d/user
 echo "$NORMAL_USER:$USER_ENCRYPTED_PASSWORD" | chpasswd --encrypted
 
