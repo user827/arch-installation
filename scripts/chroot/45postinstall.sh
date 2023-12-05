@@ -6,7 +6,7 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 . "$curdir"/../current
 
 etckeeper init
-#passwd -l root # do later
+passwd -l root
 echo "root:$ROOT_ENCRYPTED_PASSWORD" | chpasswd --encrypted
 
 cat > /etc/postfix/main.cf <<EOF
