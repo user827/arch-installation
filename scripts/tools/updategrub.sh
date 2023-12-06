@@ -21,7 +21,7 @@ insmod luks2
 cryptomount -u $uuid
 configfile (crypto0)/root/boot/$name/grub/grub.cfg
 EOF
-grub-mkstandalone --modules="gcry_sha256 gcry_sha512 gcry_dsa gcry_rsa" --format x86_64-efi -o "/efi/EFI/$name/grubx64.efi" --pubkey "$pubkeypath" --disable-shim-lock "boot/grub/grub.cfg=$cfg"
+grub-mkstandalone --modules="gcry_sha256 gcry_sha512 gcry_dsa gcry_rsa" --sbat /usr/share/grub/sbat.csv --format x86_64-efi -o "/efi/EFI/$name/grubx64.efi" --pubkey "$pubkeypath" --disable-shim-lock "boot/grub/grub.cfg=$cfg"
 rm "$cfg"
 
 sbctl sign -s /efi/EFI/"$name"/grubx64.efi
