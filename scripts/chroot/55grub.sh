@@ -10,5 +10,5 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 sed -ri 's/.*(GRUB_ENABLE_CRYPTODISK)=.*/\1=y/' /etc/default/grub
 mkdir -m0700 /efi
 mount "${DISK}1" /efi
-"$curdir"/../tools/updategrub.sh grub
-mv newgrub.cfg /boot/grub/grub/grub.cfg
+"$curdir"/../tools/updategrub.sh arch
+mv newgrub.cfg /boot/arch/grub/grub.cfg
