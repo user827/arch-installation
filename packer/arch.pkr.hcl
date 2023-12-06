@@ -85,8 +85,9 @@ source "qemu" "arch" {
     "boot",
     "<enter>"
   ]
-  boot_wait         = "10s"
-  boot_key_interval = "25ms"
+  boot_wait              = "20s"
+  boot_key_interval      = "25ms"
+  boot_keygroup_interval = "3s"
 
   vm_name        = local.vm_name
   net_device     = "virtio-net"

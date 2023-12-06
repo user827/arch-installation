@@ -11,11 +11,11 @@ variable "root_disk_password" {
 }
 
 variable "efi_firmware_code" {
-  type      = string
-  default   = "/usr/share/OVMF/x64/OVMF_CODE.fd"
+  type    = string
+  default = "/usr/share/OVMF/x64/OVMF_CODE.fd"
 }
 
 variable "efi_firmware_vars" {
-  type      = string
-  default   = "/usr/share/OVMF/x64/OVMF_VARS.fd"
+  type    = string
+  default = "/usr/share/OVMF/x64/OVMF_VARS.fd"
 }
