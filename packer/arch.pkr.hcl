@@ -85,7 +85,7 @@ source "qemu" "arch" {
     "boot",
     "<enter>"
   ]
-  boot_wait              = "20s"
+  boot_wait              = "15s"
   boot_key_interval      = "25ms"
   boot_keygroup_interval = "3s"
 

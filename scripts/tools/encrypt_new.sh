@@ -15,7 +15,7 @@ ask_continue
 # Grub does not support argo yet
 cryptsetup luksFormat "${BATCH:+--batch-mode}" --sector-size "$SECTOR_SIZE" --use-random --type luks2 "$vol" "$cryptkey"
 if [ "$BATCH" = 1 ]; then
-  printf '%s' "$CRYPT_PASSWORD" | cryptsetup luksAddKey "${BATCH:+--batch-mode}" --key-file "$cryptkey" "$vol" --new-keyfile=- --hash sha256 --pbkdf pbkdf2
+  printf '%s' "$CRYPT_PASSWORD" | cryptsetup luksAddKey "${BATCH:+--batch-mode}" --key-file "$cryptkey" --new-keyfile=- --hash sha256 --pbkdf pbkdf2 --iter-time 100 "$vol"
 else
-  cryptsetup luksAddKey --key-file "$cryptkey" --hash sha256 --pbkdf pbkdf2 "$vol"
+  cryptsetup luksAddKey --key-file "$cryptkey" --hash sha256 --pbkdf pbkdf2 --iter-time 100 "$vol"
 fi

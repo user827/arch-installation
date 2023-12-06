@@ -12,12 +12,7 @@ for script in scripts/host/*; do
   "$script"
 done
 
-mkdir "$ROOT"/root/installation
-cp -r scripts/chroot "$ROOT"/root/installation/
-cp -r scripts/tools "$ROOT"/root/installation/
-cp scripts/current "$ROOT"/root/installation/
-cp scripts/options "$ROOT"/root/installation/
-cp scripts/gpgpubkey "$ROOT"/root/installation/
+cp -r scripts "$ROOT"/root/installation
 for script in "$ROOT"/root/installation/chroot/*; do
   arch-chroot "$ROOT" "${script#"$ROOT"}"
 done
