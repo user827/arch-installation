@@ -26,7 +26,6 @@ mkdir /efi/EFI /efi/EFI/arch
 
 sbctl create-keys
 openssl x509 -outform DER -in /usr/share/secureboot/keys/PK/PK.pem -out /efi/EFI/MOK.cer
-grubsign --export > "$curdir"/../grubpubkey
 
 cp /usr/share/shim-signed/shimx64.efi /efi/EFI/arch/
 cp /usr/share/shim-signed/mmx64.efi /efi/EFI/arch/
@@ -35,7 +34,7 @@ sbctl sign -s /efi/EFI/Shellx64.efi
 
 # Try to load without shim first
 efibootmgr --unicode --disk "$DISK" --part 1 --create --label "Arch Shim" --loader /EFI/arch/shimx64.efi
-"$curdir"/../tools/updategrub.sh arch "$UUID" "$curdir"/../grubpubkey
+"$curdir"/../tools/updategrub.sh arch "$UUID"
 
 echo "Enroll shim MOK from ESP\\EFI\\MOK.cer"
 echo When using your own PK

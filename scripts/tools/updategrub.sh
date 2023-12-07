@@ -3,7 +3,10 @@ set -eu
 
 name=$1
 root_uuid=$2
-pubkeypath=$3
+
+pubkeypath=$(mktemp)
+grubsign --export > "$pubkeypath"
+trap 'rm "$pubkeypath"' 0
 
 # simple
 # shim lock not needed when the kernel files are encrypted?
