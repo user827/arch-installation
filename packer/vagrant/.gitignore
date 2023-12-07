@@ -1,2 +1,2 @@
 .vagrant
-OVMF_VARS.secboot.fd
+OVMF_VARS.fd

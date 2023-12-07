@@ -11,7 +11,12 @@ MACHINE_NAME="test"
 QEMU_IMG=$(echo "$curdir"/../output-arch-qemu/linux-arch*)
 SSH_PORT="5555"
 OVMF_CODE="/usr/share/OVMF/x64/OVMF_CODE.secboot.fd"
-OVMF_VARS=OVMF_VARS.secboot.fd
+OVMF_VARS_TEMPLATE=/usr/share/OVMF/x64/OVMF_VARS.fd
+OVMF_VARS=OVMF_VARS.fd
+
+if ! [ -f "$OVMF_VARS" ]; then
+  cp "$OVMF_VARS_TEMPLATE" "$OVMF_VARS"
+fi
 
 qemu-system-x86_64 \
         -enable-kvm \

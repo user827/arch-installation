@@ -10,6 +10,7 @@ variable "root_disk_password" {
   default   = "hello"
 }
 
+# For secure boot see https://discuss.hashicorp.com/t/building-uefi-images-with-qemu-kvm/18061
 variable "efi_firmware_code" {
   type    = string
   default = "/usr/share/OVMF/x64/OVMF_CODE.fd"

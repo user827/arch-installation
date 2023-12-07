@@ -20,3 +20,7 @@ MOUNTOPTS=lazytime,compress=zstd,discard=async
 HOSTNAME=muikku
 TIMEZONE=Europe/Helsinki
 DOMAIN=local.mydomain
+
+# Uncomment to make booting vm easier and install bootloader to BOOT/BOOTX64.EFI
+# too.
+#EFI_EXTRA_REMOVABLE=
