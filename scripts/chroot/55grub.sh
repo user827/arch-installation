@@ -30,7 +30,7 @@ sbctl sign -s /boot/vmlinuz-linux
 cp /usr/share/edk2-shell/x64/Shell.efi /efi/EFI/Shellx64.efi
 sbctl sign -s /efi/EFI/Shellx64.efi
 
-"$curdir"/../tools/updategrub.sh arch "$UUID"
+"$curdir"/../tools/updategrubsecureboot.sh arch "$UUID"
 mkdir /efi/EFI/BOOT
 # Autoboot vm
 [ -z "${EFI_EXTRA_REMOVABLE:-}" ] || cp /efi/EFI/arch/grubx64.efi /efi/EFI/BOOT/BOOTX64.EFI
@@ -39,6 +39,8 @@ echo When using your own PK
 echo sbctl enroll-keys --yes-this-might-brick-my-machine
 echo or
 echo sbctl enroll-keys -m
+
+"$curdir"/../tools/updategrub.sh unsecure
 
 # TODO Cannot delete the fedora key...
 #(
