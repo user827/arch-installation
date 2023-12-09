@@ -40,7 +40,7 @@ echo sbctl enroll-keys --yes-this-might-brick-my-machine
 echo or
 echo sbctl enroll-keys -m
 
-"$curdir"/../tools/updategrub.sh unsecure
+"$curdir"/../tools/updategrubinsecure.sh insecure
 
 # TODO Cannot delete the fedora key...
 #(
