@@ -1,1 +1,3 @@
 config.auto.pkrvars.hcl
+OVMF_VARS.fd
+ssh_key*

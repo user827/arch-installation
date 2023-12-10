@@ -15,12 +15,8 @@ during installation can be created with `mkpasswd -m sha-512` command of the
 
 * edk2-ovmf
 * packer
-* vagrant
 * qemu
 * libvirt
-* correct ruby version for vagrant
-
-* vagrant plugin install vagrant-libvirt
 
 # Testing
 
@@ -28,15 +24,14 @@ Configure `packer/config.auto.pkrvars.hcl` if necessary.
 Create virtual machine image
 ```
 cd packer
-PKR_VAR_root_disk_password=<pw> make qemuimage
+make ssh_key
+make qemuimage
 vagrant box add packer_arch_libvirt_amd64.box --name archbox --force
 ```
 
 Start the image
 ```
-cd vagrant
-vagrant up --provider=libvirt
-sudo virt-viewer vagrant_archvirt
+./qemu.sh
 ```
 
 For faster chroot only script testing, use docker:

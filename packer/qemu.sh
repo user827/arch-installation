@@ -8,7 +8,7 @@ set -Eeuxo pipefail
 curdir=$(cd "$(dirname "$0")" && pwd)
 
 MACHINE_NAME="test"
-QEMU_IMG=$(echo "$curdir"/../output-arch-qemu/linux-arch*)
+QEMU_IMG=$(echo "$curdir"/output-arch-qemu-*/linux-arch* | tail -1)
 SSH_PORT="5555"
 OVMF_CODE="/usr/share/OVMF/x64/OVMF_CODE.secboot.fd"
 OVMF_VARS_TEMPLATE=/usr/share/OVMF/x64/OVMF_VARS.fd

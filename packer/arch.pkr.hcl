@@ -16,24 +16,18 @@ packer {
       version = ">= 1.0"
       source  = "github.com/hashicorp/docker"
     }
-    vagrant = {
-      version = ">= 1"
-      source  = "github.com/hashicorp/vagrant"
-    }
-    sshkey = {
-      version = ">= 1.0.1"
-      source  = "github.com/ivoronin/sshkey"
-    }
   }
 }
 
 locals {
+  ssh_public_key_path  = "${path.cwd}/ssh_key.pub"
+  ssh_private_key_path = "${path.cwd}/ssh_key"
   #ovf_export_path    = "${path.cwd}/artifacts/${local.vm_name}"
   common_data_source = "http"
   data_source_content = {
     "/meta-data" = file("${abspath(path.root)}/data/meta-data")
     "/user-data" = templatefile("${abspath(path.root)}/data/user-data.pkrtpl.hcl", {
-      build_public_key = data.sshkey.install.public_key
+      build_public_key = file(local.ssh_public_key_path)
     })
   }
   data_source_command = local.common_data_source == "http" ? "ds=\"nocloud-net;seedfrom=http://{{.HTTPIP}}:{{.HTTPPort}}/\"" : "ds=\"nocloud\""
@@ -50,20 +44,15 @@ source "docker" "arch" {
   run_command = ["--ulimit", "nofile=1024:524288", "-d", "-i", "-t", "{{.Image}}", "/bin/bash"]
 }
 
-data "sshkey" "install" {
-  name = "packerarchsetup"
-  type = "rsa" # Vagrant only supports rsa
-}
-
 source "qemu" "arch" {
   iso_url          = "https://mirror.5i.fi/archlinux/iso/${local.vm_guest_os_version}/archlinux-${local.vm_guest_os_version}-x86_64.iso"
   iso_checksum     = "sha256:50c688670abf27345b3effa03068b0302810f8da0db80d06d11a932c3ef99056"
-  output_directory = "output-arch-qemu"
+  output_directory = "output-arch-qemu-${var.build_version}"
   shutdown_command = "sudo -S -E shutdown -P now"
 
   communicator             = "ssh"
   ssh_username             = "root"
-  ssh_private_key_file     = data.sshkey.install.private_key_path
+  ssh_private_key_file     = local.ssh_private_key_path
   ssh_timeout              = "5m"
   ssh_file_transfer_method = "sftp" # for ansible
   ssh_read_write_timeout   = "120s"
@@ -128,11 +117,5 @@ build {
     repository = "arch-test-image"
     tags       = [var.build_version]
     only       = ["docker.arch"]
-  }
-
-  post-processor "vagrant" {
-    only                = ["qemu.arch"]
-    keep_input_artifact = true
-    provider_override   = "libvirt"
   }
 }
