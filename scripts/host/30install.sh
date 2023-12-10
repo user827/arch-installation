@@ -11,3 +11,4 @@ mkdir -p "$(dirname "$ROOT$KEYFILE")"
 install -m0600 "$KEYFILE" "$ROOT$KEYFILE"
 #Keyfile gets in boot
 chmod 700 "$ROOT"/boot
+ln -sf ../run/systemd/resolve/stub-resolv.conf "$ROOT"/etc/resolv.conf

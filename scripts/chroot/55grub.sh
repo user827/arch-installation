@@ -31,7 +31,7 @@ cp /usr/share/edk2-shell/x64/Shell.efi /efi/EFI/Shellx64.efi
 sbctl sign -s /efi/EFI/Shellx64.efi
 
 # Fallback entry
-"$curdir"/../tools/updategrubinsecure.sh insecure
+"$curdir"/../tools/updategrubunsecure.sh unsecure
 
 "$curdir"/../tools/updategrubsecureboot.sh arch "$UUID"
 mkdir /efi/EFI/BOOT

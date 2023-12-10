@@ -6,7 +6,7 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 
 
 pacman -S --noconfirm \
-  btrfs-progs etckeeper \
+  btrfs-progs etckeeper vi neovim \
   wget postfix \
   base-devel
 
