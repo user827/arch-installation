@@ -8,7 +8,8 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 pacman -S --noconfirm \
   btrfs-progs etckeeper vi neovim \
   wget postfix \
-  base-devel
+  base-devel \
+  apparmor
 
 # Fetch and build our packages
 useradd --create-home --system --user-group --comment devops --shell /bin/sh devops

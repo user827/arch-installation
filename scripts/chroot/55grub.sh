@@ -14,8 +14,11 @@ echo "FILES+=($KEYFILE)" >> /etc/mkinitcpio.conf.d/encrypted.conf
 mkinitcpio -P
 
 (
+kernel_hardenings="lockdown=confidentiality edac_core.edac_mc_panic_on_ue=1 audit=1 audit_backlog_limit=8192 apparmor=1 security=apparmor intel_iommu=on vsyscall=none slab_nomerge mce=0 pti=on kvm-intel.vmentry_l1d_flush=always spectre_v2_user=on spec_store_bypass_disable=on lsm=lockdown,yama,apparmor page_alloc.shuffle=1 init_on_alloc=1 init_on_free=1 iommu.passthrough=0 iommu.strict=1 randomize_kstack_offset=on mds=full random.trust_cpu=0 tsx=off efi=disable_early_pci_dma hardened_usercopy=1 vdso32=0"
+root_options="rd.luks.name=$UUID=root rd.luks.key=$KEYFILE rd.luks.options=luks,discard"
+
 . /etc/default/grub
-sed -ri "s|(GRUB_CMDLINE_LINUX_DEFAULT)=.*|\\1=\"$GRUB_CMDLINE_LINUX_DEFAULT rd.luks.name=$UUID=root rd.luks.key=$KEYFILE rd.luks.options=luks,discard\"|" /etc/default/grub
+sed -ri "s|(GRUB_CMDLINE_LINUX_DEFAULT)=.*|\\1=\"$GRUB_CMDLINE_LINUX_DEFAULT $root_options $kernel_hardenings\"|" /etc/default/grub
 )
 sed -ri 's/.*(GRUB_ENABLE_CRYPTODISK)=.*/\1=y/' /etc/default/grub
 
