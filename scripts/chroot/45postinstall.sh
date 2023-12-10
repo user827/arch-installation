@@ -40,3 +40,5 @@ systemctl enable systemd-resolved.service
 ln -s /usr/bin/nvim /usr/local/bin/vim
 
 systemctl enable myreflector.timer
+
+systemctl enable apparmor.service
