@@ -24,9 +24,9 @@ git clone https://github.com/user827/dotfiles.git
 cd dotfiles
 git verify-commit -v HEAD
 cd pacman/myhome
-makepkg --syncdeps --noconfirm --install
+yay --build -i --answerclean=None --answerdiff=None --noconfirm .
 cd ../myhomex
-makepkg --syncdeps --noconfirm --install
+yay --build -i --answerclean=None --answerdiff=None --noconfirm .
 cd ../..
 cp options.template options
 export BATCH=1
