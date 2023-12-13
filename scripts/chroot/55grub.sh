@@ -30,8 +30,8 @@ sbctl create-keys
 # Required even if the grub uses pubkey when shim-lock is disabled...
 sbctl sign -s /boot/vmlinuz-linux
 
-cp /usr/share/edk2-shell/x64/Shell.efi /efi/EFI/Shellx64.efi
-sbctl sign -s /efi/EFI/Shellx64.efi
+cp /usr/share/edk2-shell/x64/Shell.efi /efi/Shellx64.efi
+sbctl sign -s /efi/Shellx64.efi
 
 # Fallback entry
 "$curdir"/../tools/updategrubunsecure.sh unsecure
