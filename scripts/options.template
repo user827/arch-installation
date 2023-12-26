@@ -4,23 +4,20 @@ BATCH=1
 SWAPSIZE=8G
 SECTOR_SIZE=512
 DISK=/dev/vda
+
 PARTITION=/dev/vda3
 EFI_PARTITION=/dev/vda1
+ROOTMAPPER=/dev/mapper/crypt_root
 
-KEYFILE=/root/secrets/keyfile
 #CRYPT_PASSWORD=
 NORMAL_USER=bob
 USER_ENCRYPTED_PASSWORD='$6$BnwsUHklkRInFzAz$cCXcbUQOyboVa028gu2QUqJWXDAMVcfojdIxaGB0HIgOkfiSLi1ojc/1a3NE22IXsK2.9IxR7nkX3m4wf3GMA0'
+ROOT_ENCRYPTED_PASSWORD='$6$TwDi0VsNpggMRjBO$rCaB0eMif8k5LrBhMEpICowUr.ROdod0E.ev7hg4iyEGnnYesRYnzecDWqfriuqpl21/5ngsx0y7/I43wdm7x/'
 
 BTRFSROOT=/mnt/btrfs
-ROOTMAPPER=/dev/mapper/crypt_root
 ROOT=/mnt/root
 MOUNTOPTS=lazytime,compress=zstd,discard=async
 
 HOSTNAME=muikku
 TIMEZONE=Europe/Helsinki
 DOMAIN=local.mydomain
-
-# Uncomment to make booting vm easier and install bootloader to BOOT/BOOTX64.EFI
-# too.
-#EFI_EXTRA_REMOVABLE=

@@ -7,7 +7,10 @@ if [ -f "$curdir"/../current ]; then
 fi
 . "$curdir"/../options
 partition=${1:-$PARTITION}
-keyfile=$KEYFILE
 
-cryptsetup luksOpen --key-file="$keyfile" "$partition" "${ROOTMAPPER##*/}"
+if [ "$BATCH" = 1 ]; then
+  printf '%s' "$CRYPT_PASSWORD" | cryptsetup luksOpen --key-file=- "$partition" "${ROOTMAPPER##*/}"
+else
+  cryptsetup luksOpen --key-file=- "$partition" "${ROOTMAPPER##*/}"
+fi
 echo "$partition open in $ROOTMAPPER"

@@ -5,9 +5,6 @@ set -eux
 
 . scripts/options
 
-mkdir -p "$(dirname "$KEYFILE")"
-dd bs=512 count=4 if=/dev/random of="$KEYFILE" iflag=fullblock
-
 for script in scripts/host/*; do
   "$script"
 done

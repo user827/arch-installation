@@ -8,7 +8,7 @@ git config --global user.email root@local
 git config --global user.name root
 etckeeper init
 
-passwd -l root
+#passwd -l root
 echo "root:$ROOT_ENCRYPTED_PASSWORD" | chpasswd --encrypted
 
 cat > /etc/postfix/main.cf <<EOF

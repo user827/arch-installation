@@ -13,7 +13,6 @@ dockerimage:
 
 # For testing the whole setup
 qemuimage:
-	rm -rf output-arch-qemu packer_arch_qemu.box
 	packer build --only=qemu.arch -var=build_version="$(shell git describe --tags --always)-$(shell date +%s)" .
 
 ssh_key:

@@ -17,8 +17,8 @@ blkdiscard -v "$drive"
 
 sgdisk -og "$drive"
 sgdisk -n 1:0:+1G -c 0:"EFI System" -t 0:ef00 "$drive"
-# don't use 8200 unless wanting to activate it
-sgdisk -n 2:0:+"$SWAPSIZE" -c 0:"Swap" -t 0:8300 "$drive"
+# don't use 8200 unless wanting to activate it without encryption
+sgdisk -n 2:0:+"$SWAPSIZE" -c 0:"Swap" -t 0:8e00 "$drive"
 # luks requires the size of the partition be a multiple of the used sector size (4k)
 end_position=$(sgdisk -E "$drive")
 sgdisk -n 3:0:"$(( end_position - (end_position + 1) % 2048))" -c 0:"Linux filesystem" -t 0:8300 "$drive"

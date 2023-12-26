@@ -8,7 +8,7 @@ set -Eeuxo pipefail
 curdir=$(cd "$(dirname "$0")" && pwd)
 
 MACHINE_NAME="test"
-QEMU_IMG=$(printf '%s\n' "$curdir"/output-arch-qemu-*/linux-arch* | tail -1)
+QEMU_IMG=${1:-"$(printf '%s\n' "$curdir"/output-arch-qemu-*/linux-arch* | tail -1)"}
 SSH_PORT="5555"
 OVMF_CODE="/usr/share/OVMF/x64/OVMF_CODE.secboot.fd"
 OVMF_VARS_TEMPLATE=/usr/share/OVMF/x64/OVMF_VARS.fd
@@ -30,5 +30,4 @@ qemu-system-x86_64 \
         -machine q35,smm=on \
         -global driver=cfi.pflash01,property=secure,value=on \
         -drive if=pflash,format=raw,unit=0,file="${OVMF_CODE}",readonly=on \
-        -drive if=pflash,format=raw,unit=1,file="${OVMF_VARS}" \
-        "$@"
+        -drive if=pflash,format=raw,unit=1,file="${OVMF_VARS}"
