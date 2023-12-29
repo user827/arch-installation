@@ -42,3 +42,5 @@ ln -s /usr/bin/nvim /usr/local/bin/vim
 systemctl enable myreflector.timer
 
 systemctl enable apparmor.service
+
+systemctl enable sensord-rrd.service

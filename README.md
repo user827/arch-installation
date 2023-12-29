@@ -18,6 +18,8 @@ during installation can be created with `mkpasswd -m sha-512` command of the
 * Start other service provided by
   [arch-setup](https://github.com/user827/arch-setup).
 
+* Configure sensors with `sensors-detect`.
+
 # Dependencies
 
 * edk2-ovmf

@@ -14,6 +14,7 @@ mount -vo subvolid=0,"$MOUNTOPTS" "$ROOTMAPPER" "$BTRFSROOT"
 
 btrfs subvolume create "$BTRFSROOT"/root
 
+# For more frequent snapshots
 btrfs subvolume create "$BTRFSROOT"/home
 
 btrfs subvolume create "$BTRFSROOT"/var_log
