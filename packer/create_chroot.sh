@@ -4,6 +4,7 @@ set -eux
 # TODO configure basic iptables rules for the duration of the installation
 
 . scripts/options
+export BATCH=1
 
 for script in scripts/host/*; do
   "$script"

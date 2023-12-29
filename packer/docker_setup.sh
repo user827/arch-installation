@@ -3,6 +3,7 @@ set -eux
 
 cd /root
 export NO_SETUP_HARDWARE=1
+export BATCH=1
 echo "UUID=hello" > scripts/current
 pacman -Sy
 pacman -S --noconfirm base-devel

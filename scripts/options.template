@@ -1,5 +1,5 @@
 #!/bin/sh
-BATCH=1
+#BATCH=
 
 SWAPSIZE=8G
 SECTOR_SIZE=512

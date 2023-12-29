@@ -13,7 +13,8 @@ echo "$NORMAL_USER:$USER_ENCRYPTED_PASSWORD" | chpasswd --encrypted
 
 fpr=0x8DFE60B7327D52D6
 
-sudo -iu "$NORMAL_USER" sh <<EOF
+script=$(mktemp)
+cat > "$script" <<EOF
 set -eux
 gpg --batch --no-tty --passphrase '' --quick-gen-key "$NORMAL_USER" default default
 gpg --batch --no-tty --import < /opt/installation/gpgpubkey
@@ -29,10 +30,12 @@ cd ../myhomex
 yay --build -i --answerclean=None --answerdiff=None --noconfirm .
 cd ../..
 cp options.template options
-export BATCH=1
 ./install.sh
 ./init.sh
 EOF
+chown "$NORMAL_USER": "$script"
+sudo -iu "$NORMAL_USER" env "BATCH=$BATCH" sh "$script"
+rm "$script"
 
 rm /etc/sudoers.d/nopasswduser
 echo "User_Alias SUDOERS = $NORMAL_USER" > /etc/sudoers.d/sudoers
