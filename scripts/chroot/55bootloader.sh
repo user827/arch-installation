@@ -8,6 +8,7 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 [ -z "${NO_SETUP_HARDWARE:-}" ] || exit 0
 
 mount "$EFI_PARTITION" /boot
+# TODO umask 077 to boot mount options
 
 pacman -S --noconfirm sbctl
 sbctl create-keys
