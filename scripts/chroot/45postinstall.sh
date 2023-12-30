@@ -21,3 +21,5 @@ systemctl enable systemd-resolved.service
 ln -s /usr/bin/nvim /usr/local/bin/vim
 
 systemctl enable apparmor.service
+# enable the default firewall rules
+systemctl enable nftables.service
