@@ -40,3 +40,12 @@ rm "$script"
 rm /etc/sudoers.d/nopasswduser
 echo "User_Alias SUDOERS = $NORMAL_USER" > /etc/sudoers.d/sudoers
 echo "SUDOERS ALL=(ALL:ALL) ALL" >> /etc/sudoers.d/sudoers
+
+
+useradd --create-home --user-group --comment "$ADMIN_USER" --shell /usr/bin/zsh "$ADMIN_USER"
+gpasswd -a "$ADMIN_USER" users
+echo "$ADMIN_USER:$USER_ENCRYPTED_PASSWORD" | chpasswd --encrypted
+
+# Receive senstitive mail to a protected account
+sed -i "s/^root:.*/root: $ADMIN_USER/g" /etc/postfix/aliases
+postalias /etc/postfix/aliases
