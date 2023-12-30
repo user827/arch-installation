@@ -11,3 +11,6 @@ mkdir -vm 755 "$ROOT"/home "$ROOT"/var/ "$ROOT"/var/log #"$ROOT"/var/cache "$ROO
 mount -vo rbind "$BTRFSROOT"/home "$ROOT"/home
 mount -vo rbind "$BTRFSROOT"/var_log "$ROOT"/var/log
 #mount -vo subvol=$PACMANSUBVOL "$PACMANBTRFSDEV" "$ROOT"/var/cache/pacman
+
+mkdir "$ROOT"/boot
+mount "$EFI_PARTITION" "$ROOT"/boot
