@@ -5,6 +5,8 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 . "$curdir"/../options
 . "$curdir"/../current
 
+echo "root:$ROOT_ENCRYPTED_PASSWORD" | chpasswd --encrypted
+
 pacman -S --noconfirm zsh
 useradd --create-home --user-group --comment "$NORMAL_USER" --shell /usr/bin/zsh "$NORMAL_USER"
 gpasswd -a "$NORMAL_USER" users
@@ -44,7 +46,7 @@ echo "SUDOERS ALL=(ALL:ALL) ALL" >> /etc/sudoers.d/sudoers
 
 useradd --create-home --user-group --comment "$ADMIN_USER" --shell /usr/bin/zsh "$ADMIN_USER"
 gpasswd -a "$ADMIN_USER" users
-echo "$ADMIN_USER:$USER_ENCRYPTED_PASSWORD" | chpasswd --encrypted
+echo "$ADMIN_USER:$ADMIN_ENCRYPTED_PASSWORD" | chpasswd --encrypted
 
 # Receive senstitive mail to a protected account
 sed -i "s/^root:.*/root: $ADMIN_USER/g" /etc/postfix/aliases

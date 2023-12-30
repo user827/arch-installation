@@ -4,12 +4,29 @@ set -eux
 curdir=$(cd "$(dirname "$0")" && pwd)
 . "$curdir"/../options
 
+pacman -S --noconfirm etckeeper
+git config --global user.email root@local
+git config --global user.name root
+etckeeper init
+
 
 pacman -S --noconfirm \
   btrfs-progs etckeeper vi neovim \
   wget postfix \
   base-devel \
   apparmor
+
+cat > /etc/postfix/main.cf <<EOF
+
+#For local delivery only
+inet_interfaces = loopback-only
+mynetworks_style = host
+relay_transport = error
+relay_domains =
+default_transport = error
+notify_classes = resource, software, bounce, 2bounce, delay, policy, protocol
+EOF
+systemctl enable postfix
 
 # Fetch and build our packages
 useradd --create-home --system --user-group --comment devops --shell /bin/sh devops
@@ -50,3 +67,5 @@ git verify-commit -v HEAD
 cp PKGBUILD.template PKGBUILD
 yay --build -i --answerclean=None --answerdiff=None --noconfirm .
 EOF
+systemctl enable sensord-rrd.service
+systemctl enable myreflector.timer
