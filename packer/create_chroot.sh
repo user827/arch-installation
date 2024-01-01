@@ -6,6 +6,15 @@ set -eux
 . scripts/options
 export BATCH=1
 
+# https://bbs.archlinux.org/viewtopic.php?id=283207
+# https://bugs.archlinux.org/task/76580
+mkdir -m 0755 /root/gnupg
+mount --bind /root/gnupg /etc/pacman.d/gnupg
+pacman-key --init
+pacman-key --populate
+# At least keyring need to be kept up to date
+pacman -Sy --noconfirm archlinux-keyring
+
 for script in scripts/host/*; do
   "$script"
 done
