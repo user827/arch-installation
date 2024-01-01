@@ -15,6 +15,13 @@ Name=enp*
 [Network]
 DHCP=yes
 EOF
+
+mkdir -p /etc/systemd/resolved.conf.d
+cat > /etc/systemd/resolved.conf.d/dnssec.conf <<EOF
+[Resolve]
+DNSSEC=true
+EOF
+
 systemctl enable systemd-networkd.service
 systemctl enable systemd-resolved.service
 
