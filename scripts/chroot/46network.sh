@@ -22,11 +22,12 @@ cat > /etc/systemd/resolved.conf.d/dnssec.conf <<EOF
 DNSSEC=true
 EOF
 
+# Don't start the internet if the firewall fails
+mkdir /usr/lib/systemd/system/systemd-networkd.service.requires
+ln -s /usr/lib/systemd/system/nftables.service /usr/lib/systemd/system/systemd-networkd.service.requires/
+
 systemctl enable systemd-networkd.service
 systemctl enable systemd-resolved.service
 
-ln -s /usr/bin/nvim /usr/local/bin/vim
-
-systemctl enable apparmor.service
 # enable the default firewall rules
 systemctl enable nftables.service

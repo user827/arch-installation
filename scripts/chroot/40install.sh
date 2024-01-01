@@ -69,3 +69,6 @@ yay --build -i --answerclean=None --answerdiff=None --noconfirm .
 EOF
 systemctl enable sensord-rrd.service
 systemctl enable myreflector.timer
+
+ln -s /usr/bin/nvim /usr/local/bin/vim
+systemctl enable apparmor.service
