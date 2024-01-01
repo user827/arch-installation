@@ -12,12 +12,16 @@ EOF
 cat <<EOF > "$FOLDER/loader/entries/arch.conf"
 title   Arch Linux
 linux   /vmlinuz-linux${KERNEL_SUFFIX:-}
+initrd  /intel-ucode.img
+initrd  /amd-ucode.img
 initrd  /initramfs-linux${KERNEL_SUFFIX:-}.img
 options $root_options $kernel_hardenings
 EOF
 cat <<EOF > "$FOLDER/loader/entries/arch-fallback.conf"
 title   Arch Linux (Fallback)
-linux   /vmlinuz-linux
-initrd  /initramfs-linux-fallback.img
+linux   /vmlinuz-linux${KERNEL_SUFFIX:-}
+initrd  /intel-ucode.img
+initrd  /amd-ucode.img
+initrd  /initramfs-linux-fallback${KERNEL_SUFFIX:-}.img
 options $root_options $kernel_hardenings
 EOF

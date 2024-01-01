@@ -16,15 +16,17 @@ Name=enp*
 DHCP=yes
 EOF
 
-mkdir -p /etc/systemd/resolved.conf.d
-cat > /etc/systemd/resolved.conf.d/dnssec.conf <<EOF
-[Resolve]
-DNSSEC=true
+sudo -iu devops sh <<EOF
+set -eu
+git clone https://github.com/user827/network-hardening.git
+cd network-hardening
+git verify-commit -v HEAD
+yay --build -i --answerclean=None --answerdiff=None --noconfirm .
 EOF
 
-# Don't start the internet if the firewall fails
-mkdir /usr/lib/systemd/system/systemd-networkd.service.requires
-ln -s /usr/lib/systemd/system/nftables.service /usr/lib/systemd/system/systemd-networkd.service.requires/
+# Don't start the internet if the firewall fails. No in hardening package
+#mkdir /usr/lib/systemd/system/systemd-networkd.service.requires
+#ln -s /usr/lib/systemd/system/nftables.service /usr/lib/systemd/system/systemd-networkd.service.requires/
 
 systemctl enable systemd-networkd.service
 systemctl enable systemd-resolved.service
