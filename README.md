@@ -15,10 +15,12 @@ during installation can be created with `mkpasswd -m sha-512` command of the
 
 * Enroll secureboot keys.
 
-* Start other service provided by
+* Start other services provided by
   [arch-setup](https://github.com/user827/arch-setup).
 
 * Configure sensors with `sensors-detect`.
+
+* Configura mailfilter for admin user.
 
 # Dependencies
 
