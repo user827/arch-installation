@@ -22,6 +22,8 @@ during installation can be created with `mkpasswd -m sha-512` command of the
 
 * Configura mailfilter for admin user.
 
+* Calibrate display and use its icc profile.
+
 # Dependencies
 
 * edk2-ovmf
