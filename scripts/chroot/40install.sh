@@ -14,7 +14,7 @@ pacman -S --noconfirm \
   btrfs-progs etckeeper vi neovim \
   wget postfix \
   base-devel \
-  apparmor nftables
+  apparmor nftables iptables-nft
 
 cat > /etc/postfix/main.cf <<EOF
 
