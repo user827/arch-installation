@@ -48,6 +48,25 @@ useradd --create-home --user-group --comment "$ADMIN_USER" --shell /usr/bin/zsh 
 gpasswd -a "$ADMIN_USER" users
 echo "$ADMIN_USER:$ADMIN_ENCRYPTED_PASSWORD" | chpasswd --encrypted
 
-# Receive senstitive mail to a protected account
+# Receive sensitive mail to a protected account
 sed -i "s/^root:.*/root: $ADMIN_USER/g" /etc/postfix/aliases
 postalias /etc/postfix/aliases
+cat > "/home/$ADMIN_USER"/.mailfilter <<EOF
+if ( /^From: Mail Delivery System <MAILER-DAEMON@$HOSTNAME.localdomain>$/ )
+{
+}
+elsif ( /^From: root <root@$HOSTNAME\\.localdomain>$/ && /^Subject: sec: (.*)$/ )
+{
+  subject=\$MATCH1
+  \`echo "Subject: Critical event: \$subject" | sendmail $NORMAL_USER\`
+  if ( \$RETURNCODE == 0 )
+    exit
+}
+else
+{
+  \`echo "Subject: root got mail" | sendmail $NORMAL_USER\`
+}
+EOF
+cat > "/home/$ADMIN_USER"/.forward <<EOF
+"|reformail -f0 | /usr/bin/maildrop -d \${USER}"
+EOF
