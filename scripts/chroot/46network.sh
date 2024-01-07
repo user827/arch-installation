@@ -16,12 +16,13 @@ Name=enp*
 DHCP=yes
 EOF
 
+pacman -S --noconfirm --ask 4 iptables-nft
 sudo -iu devops sh <<EOF
 set -eu
 git clone https://github.com/user827/network-hardening.git
 cd network-hardening
 git verify-commit -v HEAD
-yay --build -i --answerclean=None --answerdiff=None --noconfirm --useask .
+yay --build -i --answerclean=None --answerdiff=None --noconfirm .
 EOF
 
 # Don't start the internet if the firewall fails. No in hardening package
