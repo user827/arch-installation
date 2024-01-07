@@ -34,7 +34,7 @@ locals {
   vm_name             = "${local.vm_guest_os_family}-${local.vm_guest_os_name}-${local.vm_guest_os_version}-${var.build_version}"
   vm_guest_os_family  = "linux"
   vm_guest_os_name    = "arch"
-  vm_guest_os_version = "2023.12.01"
+  vm_guest_os_version = "2024.01.01"
 }
 
 source "docker" "arch" {
@@ -46,7 +46,7 @@ source "docker" "arch" {
 
 source "qemu" "arch" {
   iso_url          = "https://mirror.5i.fi/archlinux/iso/${local.vm_guest_os_version}/archlinux-${local.vm_guest_os_version}-x86_64.iso"
-  iso_checksum     = "sha256:50c688670abf27345b3effa03068b0302810f8da0db80d06d11a932c3ef99056"
+  iso_checksum     = "sha256:12addd7d4154df1caf5f258b80ad72e7a724d33e75e6c2e6adc1475298d47155"
   output_directory = "output-arch-qemu-${var.build_version}"
   shutdown_command = "sudo -S -E shutdown -P now"
 
