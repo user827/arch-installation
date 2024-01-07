@@ -24,6 +24,8 @@ during installation can be created with `mkpasswd -m sha-512` command of the
 
 * Calibrate display and use its icc profile.
 
+* Configure `/etc/btrbk/btrbk.conf` and enable `backup-daily@daily.timer` and `backup-hourly@hourly.timer` or similar.
+
 # Dependencies
 
 * edk2-ovmf

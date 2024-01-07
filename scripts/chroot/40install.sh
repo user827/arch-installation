@@ -72,3 +72,12 @@ systemctl enable myreflector.timer
 
 ln -s /usr/bin/nvim /usr/local/bin/vim
 systemctl enable apparmor.service
+
+sudo -iu devops sh <<EOF
+set -eu
+git clone https://github.com/user827/btrfs-setup.git
+cd btrfs-setup
+git verify-commit -v HEAD
+makepkg --syncdeps --noconfirm --install
+EOF
+systemctl enable btrfs-balance@-.service btrfs-scrub-resume@-.service btrfs-scrub@-.timer
