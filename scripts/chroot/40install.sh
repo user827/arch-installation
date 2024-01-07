@@ -11,7 +11,7 @@ etckeeper init
 
 
 pacman -S --noconfirm \
-  btrfs-progs etckeeper vi neovim \
+  etckeeper vi neovim \
   wget postfix \
   base-devel \
   apparmor
