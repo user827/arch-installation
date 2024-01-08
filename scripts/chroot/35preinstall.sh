@@ -19,3 +19,7 @@ export LANG=en_US.UTF-8
 
 # See man 1 hostname for recommended approach for configuring domain name.
 echo "127.0.1.1   $HOSTNAME.$DOMAIN   $HOSTNAME" >> /etc/hosts
+
+# Setup swap
+echo "swap	PARTLABEL=Swap	/dev/urandom	swap,cipher=aes-xts-plain64:sha256,size=256" >> /etc/crypttab
+echo "/dev/mapper/swap	swap	swap	defaults	0	0" >> /etc/fstab
