@@ -25,6 +25,7 @@ relay_transport = error
 relay_domains =
 default_transport = error
 notify_classes = resource, software, bounce, 2bounce, delay, policy, protocol
+default_destination_rate_delay = 1s
 EOF
 systemctl enable postfix
 
