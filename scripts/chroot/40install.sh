@@ -64,11 +64,11 @@ set -eu
 git clone https://github.com/user827/arch-setup.git
 cd arch-setup
 git verify-commit -v HEAD
-cp PKGBUILD.template PKGBUILD
 yay --build -i --answerclean=None --answerdiff=None --noconfirm .
 EOF
 systemctl enable sensord-rrd.service
-systemctl enable myreflector.timer
+systemctl enable myreflector.timer aur.timer
+systemctl enable sec-journal.service sec-journal-warn.service sec-audit.service
 
 ln -s /usr/bin/nvim /usr/local/bin/vim
 systemctl enable apparmor.service
