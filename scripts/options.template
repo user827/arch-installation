@@ -23,3 +23,5 @@ MOUNTOPTS=lazytime,compress=zstd,discard=async
 HOSTNAME=muikku
 TIMEZONE=Europe/Helsinki
 DOMAIN=local.mydomain
+
+INET_IFACE='enp*'
