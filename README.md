@@ -20,9 +20,9 @@ during installation can be created with `mkpasswd -m sha-512` command of the
 
 * Configure sensors with `sensors-detect`.
 
-* Install courier-maildrop.
-
 * Install linux-my-hardened.
+
+* Configure admin user mail forwarding.
 
 * Calibrate display and use its icc profile.
 
