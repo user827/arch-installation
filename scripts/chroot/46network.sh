@@ -34,3 +34,9 @@ systemctl enable systemd-resolved.service
 
 # enable the default firewall rules
 systemctl enable nftables.service
+
+inet_iface=$(ip addr show | awk '/inet.*brd/{print $NF; exit}')
+cat >> /etc/nftables.conf <<EOF
+define inet_iface = "$inet_iface"
+include "/etc/nftables/*"
+EOF
