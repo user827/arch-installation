@@ -8,8 +8,9 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 echo "root:$ROOT_ENCRYPTED_PASSWORD" | chpasswd --encrypted
 
 pacman -S --noconfirm zsh
-useradd --create-home --user-group --comment "$NORMAL_USER" --shell /usr/bin/zsh "$NORMAL_USER"
-gpasswd -a "$NORMAL_USER" users
+#useradd --create-home --user-group --comment "$NORMAL_USER" --shell /usr/bin/zsh "$NORMAL_USER"
+#gpasswd -a "$NORMAL_USER" users
+homectl create "$NORMAL_USER" --real-name "$NORMAL_USER_REAL_NAME" --storage=subvolume --shell /usr/bin/zsh
 echo "$NORMAL_USER ALL=(root) NOPASSWD: ALL" > /etc/sudoers.d/nopasswduser
 echo "$NORMAL_USER:$USER_ENCRYPTED_PASSWORD" | chpasswd --encrypted
 
