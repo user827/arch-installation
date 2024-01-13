@@ -71,6 +71,7 @@ systemctl enable sensord-rrd.service
 systemctl enable myreflector.timer aur.timer
 systemctl enable sec-journal.service sec-journal-warn.service sec-audit.service
 systemctl enable smartd.service auditd.service
+systemctl enable ras-mc-ctl.service rasdaemon.service
 
 ln -s /usr/bin/nvim /usr/local/bin/vim
 systemctl enable apparmor.service
