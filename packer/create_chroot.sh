@@ -26,26 +26,27 @@ done
 
 umount -vR "$ROOT"
 
-machinename=arch-installation
-machinepath=/var/lib/machines/$machinename
-mkdir -p "$machinepath"
-mount -vo rbind "$BTRFSROOT"/root "$machinepath"
-# For programs needing a working init
-mkdir -p /etc/systemd/nspawn
-cat >> /etc/systemd/nspawn/$machinename.nspawn <<EOF
-[Exec]
-NotifyReady=yes
-
-[Network]
-VirtualEthernet=no
-EOF
-machinectl start "$machinename"
-journalctl -M "$machinename" -b -p3
-for script in "$machinepath"/root/installation/nspawn/*; do
-  systemd-run --pty --pipe --wait --collect --service-type=exec -M "$machinename" "${script#"$machinepath"}"
-done
-machinectl poweroff "$machinename"
-umount -vR "$machinepath"
+# Buge, lots of boot errors anyways
+#machinename=arch-installation
+#machinepath=/var/lib/machines/$machinename
+#mkdir -p "$machinepath"
+#mount -vo rbind "$BTRFSROOT"/root "$machinepath"
+## For programs needing a working init
+#mkdir -p /etc/systemd/nspawn
+#cat >> /etc/systemd/nspawn/$machinename.nspawn <<EOF
+#[Exec]
+#NotifyReady=yes
+#
+#[Network]
+#VirtualEthernet=no
+#EOF
+#machinectl start "$machinename"
+#journalctl -M "$machinename" -b -p3
+#for script in "$machinepath"/root/installation/nspawn/*; do
+#  systemd-run --pty --pipe --wait --collect --service-type=exec -M "$machinename" "${script#"$machinepath"}"
+#done
+#machinectl poweroff "$machinename"
+#umount -vR "$machinepath"
 
 #mkdir -m 700 "$ROOT"/.ssh
 #cp /root/.ssh/authorized_keys "$ROOT"/.ssh/
