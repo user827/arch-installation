@@ -10,4 +10,4 @@ systemctl enable gdm.service
 # Needs to be started before gdm to avoid warnings
 systemctl enable rtkit-daemon.service
 # For sleep
-systemctl enable systemd-homed
+#systemctl enable systemd-homed
