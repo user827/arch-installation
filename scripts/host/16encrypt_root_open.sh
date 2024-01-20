@@ -8,7 +8,7 @@ fi
 . "$curdir"/../options
 partition=${1:-$PARTITION}
 
-if [ "$BATCH" = 1 ]; then
+if [ "${BATCH:-}" = 1 ]; then
   printf '%s' "$CRYPT_PASSWORD" | cryptsetup luksOpen --key-file=- "$partition" "${ROOTMAPPER##*/}"
 else
   cryptsetup luksOpen --key-file=- "$partition" "${ROOTMAPPER##*/}"

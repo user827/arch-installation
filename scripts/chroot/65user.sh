@@ -36,7 +36,7 @@ cp options.template options
 ./init.sh
 EOF
 chown "$NORMAL_USER": "$script"
-sudo -iu "$NORMAL_USER" env "BATCH=$BATCH" sh "$script"
+sudo -iu "$NORMAL_USER" env "BATCH=${BATCH:-}" sh "$script"
 rm "$script"
 
 rm /etc/sudoers.d/nopasswduser
