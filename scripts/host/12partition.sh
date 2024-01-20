@@ -23,9 +23,13 @@ sgdisk -n 2:0:+"$SWAPSIZE" -c 0:"Swap" -t 0:8e00 "$drive"
 end_position=$(sgdisk -E "$drive")
 sgdisk -n 3:0:"$(( end_position - (end_position + 1) % 2048))" -c 0:"Linux filesystem" -t 0:8300 "$drive"
 
-wipefs --all "$drive"?1
-wipefs --all "$drive"?2
-wipefs --all "$drive"?3
+p=
+if [ -e "$drive"p1 ]; then
+  p=p
+fi
+wipefs --all "$drive"${p}1
+wipefs --all "$drive"${p}2
+wipefs --all "$drive"${p}3
 
 echo DONE:
 sgdisk -p "$drive"
