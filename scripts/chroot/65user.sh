@@ -46,7 +46,8 @@ echo "SUDOERS ALL=(ALL:ALL) ALL" >> /etc/sudoers.d/sudoers
 
 useradd --create-home --user-group --comment "$ADMIN_USER" --shell /usr/bin/zsh "$ADMIN_USER"
 gpasswd -a "$ADMIN_USER" users
-echo "$ADMIN_USER:$ADMIN_ENCRYPTED_PASSWORD" | chpasswd --encrypted
+# Use sudo
+passwd -l "$ADMIN_USER"
 
 # Receive sensitive mail to a protected account
 sed -i "s/^root:.*/root: $ADMIN_USER/g" /etc/postfix/aliases
