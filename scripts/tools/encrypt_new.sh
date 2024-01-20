@@ -7,7 +7,8 @@ vol=$1
 curdir=$(cd "$(dirname "$0")" && pwd)
 . "$curdir"/../lib.sh
 
-fdisk -l "${vol%[0-9]}"
+devname=$(lsblk -no pkname "$vol")
+fdisk -l "${vol%/*}/$devname"
 echo "overwriting data on $vol"
 ask_continue
 
