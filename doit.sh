@@ -16,4 +16,5 @@ done
 
 umount -vR "$ROOT"
 umount "$BTRFSROOT"
+cryptsetup close "$ROOTMAPPER"
 echo "Arch OS installation done"

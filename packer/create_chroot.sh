@@ -52,5 +52,6 @@ umount -vR "$ROOT"
 #cp /root/.ssh/authorized_keys "$ROOT"/.ssh/
 
 umount "$BTRFSROOT"
+cryptsetup close "$ROOTMAPPER"
 echo "Arch OS installation done"
 #shutdown -r "+1"
