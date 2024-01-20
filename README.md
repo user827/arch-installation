@@ -1,15 +1,19 @@
 Scripts for installing arch linux.
 
-# Install
+# Pre setup
 
 * Configure `scripts/options`.
+* Check nvme preferred sector size with `nvme` util.
+* A password used to access the machine during installation can be created with
+  `mkpasswd -m sha-512` command of the `whois` package.
+
+# Install
+
 * Run the scripts in order in `scripts/host` folder.
 * Then in `scripts/chroot` folder.
 * Reboot.
 
-See `packer/create_chroot.sh` for an example. A password used to access the machine
-during installation can be created with `mkpasswd -m sha-512` command of the
-`whois` package.
+See `packer/create_chroot.sh` for an example.
 
 # Post setup
 
@@ -29,6 +33,8 @@ during installation can be created with `mkpasswd -m sha-512` command of the
 * Configure `/etc/btrbk/btrbk.conf` and enable `backup-daily@daily.timer` and `backup-hourly@hourly.timer` or similar.
 
 * For proton: `usermod -a -G games`
+
+* Update nvme firmware with nvme-cli
 
 # Dependencies
 

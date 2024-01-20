@@ -1,12 +1,13 @@
 #!/bin/sh
 #BATCH=
 
-SWAPSIZE=8G
+SWAPSIZE=32G
 SECTOR_SIZE=512
-DISK=/dev/vda
+#DISK=/dev/vda
+DISK=/dev/nvme0n1
 
-PARTITION=/dev/vda3
-EFI_PARTITION=/dev/vda1
+PARTITION=/dev/nvme0n1p3
+EFI_PARTITION=/dev/nvme0n1p1
 ROOTMAPPER=/dev/mapper/crypt_root
 
 #CRYPT_PASSWORD=
