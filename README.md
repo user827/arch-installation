@@ -28,6 +28,8 @@ during installation can be created with `mkpasswd -m sha-512` command of the
 
 * Configure `/etc/btrbk/btrbk.conf` and enable `backup-daily@daily.timer` and `backup-hourly@hourly.timer` or similar.
 
+* For proton: `usermod -a -G games`
+
 # Dependencies
 
 * edk2-ovmf

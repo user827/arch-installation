@@ -48,10 +48,8 @@ EOF
 
 sudo -iu devops sh <<EOF
 set -eu
-gpg --batch --no-tty --passphrase '' --quick-gen-key devops default default
 gpg --batch --no-tty --import < /opt/installation/gpgpubkey
 printf '5\ny\n' | gpg --command-fd 0 --batch --no-tty --edit-key $fpr trust
-printf 'y\ny\n' | gpg --command-fd 0 --batch --no-tty --edit-key $fpr lsign
 
 git clone https://github.com/user827/shlib.git
 cd shlib
