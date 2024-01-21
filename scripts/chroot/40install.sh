@@ -14,8 +14,7 @@ pacman -S --noconfirm \
   etckeeper vi neovim \
   wget postfix \
   base-devel \
-  apparmor \
-  man
+  apparmor
 
 cat >> /etc/postfix/main.cf <<EOF
 
