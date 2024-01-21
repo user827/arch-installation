@@ -9,5 +9,6 @@ pacman -S --noconfirm gnome
 systemctl enable gdm.service
 # Needs to be started before gdm to avoid warnings
 systemctl enable rtkit-daemon.service
+systemctl enable bluetooth.service
 # For sleep
 #systemctl enable systemd-homed
