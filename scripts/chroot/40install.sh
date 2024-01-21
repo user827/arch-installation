@@ -14,9 +14,10 @@ pacman -S --noconfirm \
   etckeeper vi neovim \
   wget postfix \
   base-devel \
-  apparmor
+  apparmor \
+  man
 
-cat > /etc/postfix/main.cf <<EOF
+cat >> /etc/postfix/main.cf <<EOF
 
 #For local delivery only
 inet_interfaces = loopback-only
@@ -73,6 +74,9 @@ systemctl enable ras-mc-ctl.service rasdaemon.service
 
 ln -s /usr/bin/nvim /usr/local/bin/vim
 systemctl enable apparmor.service
+
+# default 3 is annoying
+echo 'deny = 30' > /etc/security/faillock.conf
 
 sudo -iu devops sh <<EOF
 set -eu

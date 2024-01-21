@@ -36,6 +36,14 @@ See `packer/create_chroot.sh` for an example.
 
 * Update nvme firmware with nvme-cli
 
+* Create/import ssh and gpg key
+
+* Configure firefox
+
+# TODO
+
+* gpg pubring.db.lock is held
+
 # Dependencies
 
 * edk2-ovmf

@@ -40,8 +40,10 @@ sudo -iu "$NORMAL_USER" env "BATCH=${BATCH:-}" sh "$script"
 rm "$script"
 
 rm /etc/sudoers.d/nopasswduser
-echo "User_Alias SUDOERS = $NORMAL_USER" > /etc/sudoers.d/sudoers
-echo "SUDOERS ALL=(ALL:ALL) ALL" >> /etc/sudoers.d/sudoers
+cat > /etc/sudoers.d/10sudoers <<EOF
+User_Alias SUDOERS = $NORMAL_USER
+SUDOERS ALL=(ALL:ALL) ALL
+EOF
 
 
 useradd --create-home --user-group --comment "$ADMIN_USER" --shell /usr/bin/zsh "$ADMIN_USER"
@@ -50,5 +52,7 @@ gpasswd -a "$ADMIN_USER" users
 passwd -l "$ADMIN_USER"
 
 # Receive sensitive mail to a protected account
-sed -i "s/^root:.*/root: $ADMIN_USER/g" /etc/postfix/aliases
+sed -ri "s/^#?root:.*/root: $ADMIN_USER/g" /etc/postfix/aliases
 postalias /etc/postfix/aliases
+
+sed -ri 's|#(.*/usr/bin/pinentry-gnome)|\1|' /etc/pinentry/preexec
