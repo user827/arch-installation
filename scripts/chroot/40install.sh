@@ -66,7 +66,7 @@ cd arch-setup
 git verify-commit -v HEAD
 yay --build -i --answerclean=None --answerdiff=None --noconfirm .
 EOF
-systemctl enable sensord-rrd.service
+systemctl enable sensord-rrd.service mylighttpd.service
 systemctl enable myreflector.timer aur.timer
 systemctl enable sec-journal.service sec-journal-warn.service sec-audit.service
 systemctl enable smartd.service auditd.service

@@ -17,7 +17,8 @@ See `packer/create_chroot.sh` for an example.
 
 # Post setup
 
-* Enroll secureboot keys.
+* Enroll secureboot keys with `sbctl enroll-keys --yolo` or add Microsoft keys
+  also.
 
 * Start other services provided by
   [arch-setup](https://github.com/user827/arch-setup).
