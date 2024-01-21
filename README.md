@@ -31,6 +31,8 @@ See `packer/create_chroot.sh` for an example.
 
 * Configure admin user mail forwarding.
 
+* Gnome settings, keyboard...
+
 * Calibrate display and use its icc profile.
 
 * Configure `/etc/btrbk/btrbk.conf` and enable `backup-daily@daily.timer` and `backup-hourly@hourly.timer` or similar.
