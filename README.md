@@ -17,6 +17,8 @@ See `packer/create_chroot.sh` for an example.
 
 # Post setup
 
+* Set fstab to 700 /boot
+
 * Enroll secureboot keys with `sbctl enroll-keys --yolo` or add Microsoft keys
   also.
 
@@ -38,6 +40,8 @@ See `packer/create_chroot.sh` for an example.
 * Create/import ssh and gpg key
 
 * Configure firefox
+
+* Configure -j $cpucount-2 to makepkg.conf
 
 # TODO
 

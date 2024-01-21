@@ -9,9 +9,6 @@ curdir=$(cd "$(dirname "$0")" && pwd)
 
 # TODO umask 077 to boot mount options
 
-# Boot contains sensitive info
-chmod 700 /boot
-
 pacman -S --noconfirm sbctl
 sbctl create-keys
 sbctl sign -s /usr/lib/systemd/boot/efi/systemd-bootx64.efi
