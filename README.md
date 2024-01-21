@@ -32,8 +32,6 @@ See `packer/create_chroot.sh` for an example.
 
 * Configure `/etc/btrbk/btrbk.conf` and enable `backup-daily@daily.timer` and `backup-hourly@hourly.timer` or similar.
 
-* For proton: `usermod -a -G games`
-
 * Update nvme firmware with nvme-cli
 
 * Create/import ssh and gpg key
