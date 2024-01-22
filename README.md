@@ -45,6 +45,15 @@ See `packer/create_chroot.sh` for an example.
 
 * Configure -j $cpucount-2 to makepkg.conf
 
+* X11 device config
+
+* Wayland disable mouse acceleration
+
+* Check device passes fwupd security checks
+
+* Used `edac-util --vv` and see if EDAC registers modules in dmesg to verify ECC
+  is enabled.
+
 # TODO
 
 * gpg pubring.db.lock is held
