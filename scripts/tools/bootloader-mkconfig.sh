@@ -22,6 +22,6 @@ title   Arch Linux (Fallback)
 linux   /vmlinuz-linux${KERNEL_SUFFIX:-}
 initrd  /intel-ucode.img
 initrd  /amd-ucode.img
-initrd  /initramfs-linux-fallback${KERNEL_SUFFIX:-}.img
+initrd  /initramfs-linux${KERNEL_SUFFIX:-}-fallback.img
 options $root_options $kernel_hardenings
 EOF
