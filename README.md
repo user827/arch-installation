@@ -54,6 +54,8 @@ See `packer/create_chroot.sh` for an example.
 * Used `edac-util --vv` and see if EDAC registers modules in dmesg to verify ECC
   is enabled.
 
+* Check ecc is enabled by grepping edac in dmesg
+
 # TODO
 
 * gpg pubring.db.lock is held
