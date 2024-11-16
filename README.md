@@ -20,7 +20,7 @@ See `packer/create_chroot.sh` for an example.
 * Set fstab to 700 /boot
 
 * Enroll secureboot keys with `sbctl enroll-keys --yolo` or add Microsoft keys
-  also.
+  also. Yolo might break gpu initialization.
 
 * Start other services provided by
   [arch-setup](https://github.com/user827/arch-setup).
