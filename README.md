@@ -56,6 +56,8 @@ See `packer/create_chroot.sh` for an example.
 
 * Check ecc is enabled by grepping edac in dmesg
 
+* Use `bootctl` to verify secureboot status
+
 # TODO
 
 * gpg pubring.db.lock is held
